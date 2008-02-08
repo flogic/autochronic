@@ -27,7 +27,19 @@ describe SpaceCowboy do
       @toker.some_date.should == date
     end
     
-    it 'should accept a natural language date string'
+    # WTF: this is presently giving me the next day
+    # >> Chronic.parse('today')
+    # => Fri Feb 08 00:00:00 -0600 2008
+    # >> Date.today.to_s
+    # => "2008-02-07"
+    # >> Time.now
+    # => Thu Feb 07 23:13:28 -0600 2008
+    it 'should accept a natural language date string' do
+      date = Date.today
+      date_input = 'today'
+      @toker.some_date = date_input
+      @toker.some_date.should == date
+    end
     
     it 'should be nil on unusable input' do
       date_input = 'jozxyqk'
