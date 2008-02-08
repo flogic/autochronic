@@ -10,5 +10,13 @@ class ActiveRecord::ConnectionAdapters::Column
       parsed = Chronic.parse(string)
       parsed and parsed.to_date
     end
+    
+    def string_to_time_with_chronic(string)
+      result = string_to_time_without_chronic(string)
+      return result if result
+      
+      Chronic.parse(string)
+    end
+    alias_method_chain :string_to_time, :chronic
   end
 end
