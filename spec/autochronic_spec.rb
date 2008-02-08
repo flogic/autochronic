@@ -12,7 +12,7 @@ describe SpaceCowboy do
     @toker = SpaceCowboy.new
   end
   
-  describe "'some_date' field" do
+  describe "'some_date' date field" do
     it 'should accept a date object' do
       date = Date.civil(2008, 2, 7)
       date_input = date
@@ -39,6 +39,36 @@ describe SpaceCowboy do
       date_input = 'jozxyqk'
       @toker.some_date = date_input
       @toker.some_date.should be_nil
+    end
+  end
+  
+  describe "'some_time' datetime field" do
+    it 'should accept a time object' do
+      time = Time.local(2008, 2, 7, 23, 42, 0)
+      time_input = time
+      @toker.some_time = time_input
+      @toker.some_time.should == time
+    end
+    
+    it 'should accept a time string' do
+      time = Time.local(2008, 2, 7, 23, 42, 0)
+      time_input = time.to_s
+      @toker.some_time = time_input
+      @toker.some_time.should == time
+    end
+    
+    it 'should accept a natural language time string' do
+      date = Date.today
+      time = Time.local(date.year, date.month, date.day, 5, 0, 0)
+      time_input = 'today at 5 am'
+      @toker.some_time = time_input
+      @toker.some_time.should == time
+    end
+    
+    it 'should be nil on unusable input' do
+      time_input = 'jozxyqk'
+      @toker.some_time = time_input
+      @toker.some_time.should be_nil
     end
   end
 end
