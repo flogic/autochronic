@@ -20,8 +20,19 @@ describe SpaceCowboy do
       @toker.some_date.should == date
     end
     
-    it 'should accept a date string'
+    it 'should accept a date string' do
+      date = Date.civil(2008, 2, 7)
+      date_input = date.to_s
+      @toker.some_date = date_input
+      @toker.some_date.should == date
+    end
+    
     it 'should accept a natural language date string'
-    it 'should be nil on unusable input'
+    
+    it 'should be nil on unusable input' do
+      date_input = 'jozxyqk'
+      @toker.some_date = date_input
+      @toker.some_date.should be_nil
+    end
   end
 end
