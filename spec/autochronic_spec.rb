@@ -102,4 +102,27 @@ describe SpaceCowboy do
     end
   end
   
+  describe "'name' string field" do
+    it 'should still accept strings normally' do
+      name_input = 'Maurice'
+      @toker.name = name_input
+      @toker.name.should == name_input
+    end
+  end
+  
+  describe "'trees_shaken' integer field" do
+    it 'should still accept strings normally' do
+      integer = 5
+      integer_input = '5'
+      @toker.trees_shaken = integer_input
+      @toker.trees_shaken.should == integer
+    end
+    
+    it 'should still accept integers normally' do
+      integer = 5
+      integer_input = 5
+      @toker.trees_shaken = integer_input
+      @toker.trees_shaken.should == integer
+    end
+  end
 end
