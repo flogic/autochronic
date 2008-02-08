@@ -71,4 +71,35 @@ describe SpaceCowboy do
       @toker.some_time.should be_nil
     end
   end
+  
+  describe "'other_time' timestamp field" do
+    it 'should accept a time object' do
+      time = Time.local(2008, 2, 7, 23, 42, 0)
+      time_input = time
+      @toker.other_time = time_input
+      @toker.other_time.should == time
+    end
+    
+    it 'should accept a time string' do
+      time = Time.local(2008, 2, 7, 23, 42, 0)
+      time_input = time.to_s
+      @toker.other_time = time_input
+      @toker.other_time.should == time
+    end
+    
+    it 'should accept a natural language time string' do
+      date = Date.today
+      time = Time.local(date.year, date.month, date.day, 5, 0, 0)
+      time_input = 'today at 5 am'
+      @toker.other_time = time_input
+      @toker.other_time.should == time
+    end
+    
+    it 'should be nil on unusable input' do
+      time_input = 'jozxyqk'
+      @toker.other_time = time_input
+      @toker.other_time.should be_nil
+    end
+  end
+  
 end

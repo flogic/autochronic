@@ -2,5 +2,6 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table :space_cowboys, :force => true do |t|
     t.date :some_date
     t.datetime :some_time
+    t.timestamp :other_time
   end
 end
